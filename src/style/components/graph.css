@@ -7,3 +7,11 @@
     height: 100%;
     width: 100%;
 }
+
+iframe {
+    margin: none;
+    padding: none;
+    border: none;
+    line-height: 0;
+    display: block;
+}

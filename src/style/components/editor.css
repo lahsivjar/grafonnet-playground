@@ -1,5 +1,6 @@
 .editor {
-    height: 100%;
+    height: calc(100vh - 48px);
+    overflow: auto;
 }
 
 .ReactCodeMirror {
