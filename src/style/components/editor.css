@@ -1,0 +1,13 @@
+.editor {
+    height: 100%;
+}
+
+.ReactCodeMirror {
+    height: 100%;
+}
+
+.CodeMirror {
+  font-family: monospace;
+  height: 100%;
+  direction: ltr;
+}
