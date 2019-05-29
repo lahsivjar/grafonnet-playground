@@ -23,6 +23,10 @@ func RunHandler(c *gin.Context) {
 		return
 	}
 
+	// TODO: Convert from jsonnet to json
+
+	// TODO: Post to grafana for creating snapshots
+
 	c.JSON(http.StatusOK, runResponse{
 		URL: "https://google.com",
 	})
