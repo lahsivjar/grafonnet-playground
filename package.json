@@ -22,12 +22,18 @@
   },
   "homepage": "https://github.com/lahsivjar/grafonnet-playground#readme",
   "dependencies": {
-    "@material-ui/core": "^4.0.0",
+    "@material-ui/core": "^4.0.1",
     "@material-ui/icons": "^4.0.1",
+    "axios": "^0.18.0",
     "codemirror-mode-jsonnet": "^1.0.0",
     "react": "^16.8.6",
     "react-codemirror": "^1.0.0",
-    "react-dom": "^16.8.6"
+    "react-dom": "^16.8.6",
+    "react-redux": "^7.0.3",
+    "redux": "^4.0.1",
+    "redux-logger": "^3.0.6",
+    "redux-promise-middleware": "^6.1.0",
+    "redux-thunk": "^2.3.0"
   },
   "eslintConfig": {
     "extends": "react-app"
