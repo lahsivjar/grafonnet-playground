@@ -3,10 +3,13 @@ package main
 import (
 	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
+	"github.com/lahsivjar/grafonnet-playground/config"
 	"github.com/lahsivjar/grafonnet-playground/handlers"
 )
 
 func main() {
+	cfg := config.Load()
+
 	router := setupGin()
 
 	router.Use(
@@ -16,7 +19,7 @@ func main() {
 
 	api := router.Group("/api/v1")
 	{
-		api.POST("/run", handlers.RunHandler)
+		api.POST("/run", handlers.RunHandler(cfg))
 	}
 
 	router.Run(":8080")

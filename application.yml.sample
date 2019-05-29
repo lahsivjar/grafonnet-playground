@@ -1,0 +1,2 @@
+GRAFANA_URL: "https://target-grafana-url"
+GRAFANA_API_KEY: "secret-api-key"
