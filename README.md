@@ -7,10 +7,10 @@ Run using dockerhub image (note the variables in the command)
 
 ```
 docker run \
-    -e "GRAFANA_URL=${grafana_url}"
-    -e "GRAFANA_API_KEY=${grafana_api_key}"
-    -e "GRAFONNET_PLAYGROUND_FOLDER_ID=${grafana_playground_folder_id}"
-    -p 8080:8080
+    -e "GRAFANA_URL=${grafana_url}" \
+    -e "GRAFANA_API_KEY=${grafana_api_key}" \
+    -e "GRAFONNET_PLAYGROUND_FOLDER_ID=${grafana_playground_folder_id}" \
+    -p 8080:8080 \
     lahsivjar/grafonnet-playground
 ```
 
@@ -19,7 +19,7 @@ docker run \
 ```
 make copy-config
 ```
-- Update the properties in the file `application.yml`
+- Update properties in the file `application.yml`
 - Build code
 ```
 make build-dev
