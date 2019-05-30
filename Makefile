@@ -30,7 +30,7 @@ npm-build-dev:
 npm-build:
 	npm run build
 
-dev-build: npm-build-dev go-build
+build-dev: npm-build-dev go-build
 
 build: npm-build go-build
 

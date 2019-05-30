@@ -29,21 +29,23 @@ export default function RunReducer(state = initialState, action) {
                 error: false,
             }
         case RUN_FULFILLED:
-            action.payload.url = getUrl(action.payload.url);
             return {
                 ...state,
                 ...action.payload,
+                url: getUrl(action.payload.url),
                 loading: false,
                 error: false,
             }
         case RUN_REJECTED:
+            var errMsg = '';
             if (action.payload.response && action.payload.response.data) {
-                state.errorMsg = action.payload.response.data.errorMsg;
+                errMsg = action.payload.response.data.errorMsg;
             } else if (action.payload.message) {
-                state.errorMsg = action.payload.message
+                errMsg = action.payload.message
             }
             return {
                 ...state,
+                errorMsg: errMsg,
                 loading: false,
                 error: true,
             }

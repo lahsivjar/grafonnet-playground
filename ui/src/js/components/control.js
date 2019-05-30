@@ -8,6 +8,7 @@ import Grid from '@material-ui/core/Grid';
 import Icon from '@material-ui/core/Icon';
 import { connect } from 'react-redux';
 import { Run } from '../actions/run';
+import fileDownload from 'js-file-download';
 
 import '../../style/components/control.css';
 
@@ -26,6 +27,10 @@ class Control extends React.Component {
         this.props.Run(data)
     }
 
+    download = () => {
+        fileDownload(this.props.code, 'grafonnet-playground.jsonnet', 'text/plain;charset=utf-8')
+    }
+
     render() {
         const { classes } = this.props;
         return(
@@ -37,6 +42,7 @@ class Control extends React.Component {
                                 <IconButton
                                     className={classes.button}
                                     aria-label='Download'
+                                    onClick={this.download}
                                 >
                                     <CloudDownloadIcon />
                                 </IconButton>
