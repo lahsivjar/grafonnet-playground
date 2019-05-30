@@ -10,9 +10,12 @@ docker run \
     -e "GRAFANA_URL=${grafana_url}" \
     -e "GRAFANA_API_KEY=${grafana_api_key}" \
     -e "GRAFONNET_PLAYGROUND_FOLDER_ID=${grafana_playground_folder_id}" \
+    -e "GIN_MODE=release" \
     -p 8080:8080 \
     lahsivjar/grafonnet-playground
 ```
+
+*Note*: For debugging remove the `GIN_MODE` environment variable from above command
 
 ## Development build
 - Copy config file

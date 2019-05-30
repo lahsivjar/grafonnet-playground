@@ -37,7 +37,7 @@ export default function RunReducer(state = initialState, action) {
                 error: false,
             }
         case RUN_REJECTED:
-            var errMsg = '';
+            var errMsg = 'Unknown error occurred while attempting to run jsonnet';
             if (action.payload.response && action.payload.response.data) {
                 errMsg = action.payload.response.data.errorMsg;
             } else if (action.payload.message) {
@@ -46,6 +46,7 @@ export default function RunReducer(state = initialState, action) {
             return {
                 ...state,
                 errorMsg: errMsg,
+                url: '',
                 loading: false,
                 error: true,
             }

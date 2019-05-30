@@ -28,7 +28,11 @@ class Control extends React.Component {
     }
 
     download = () => {
-        fileDownload(this.props.code, 'grafonnet-playground.jsonnet', 'text/plain;charset=utf-8')
+        fileDownload(
+            this.props.code,
+            'grafonnet-playground.jsonnet',
+            'text/plain;charset=utf-8'
+        )
     }
 
     render() {
@@ -53,6 +57,7 @@ class Control extends React.Component {
                                     className={classes.button}
                                     onClick={this.runCode}
                                     aria-label='Run'
+                                    disabled={this.props.loading}
                                 >
                                     <SendIcon />
                                 </IconButton>
