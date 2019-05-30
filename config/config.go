@@ -8,10 +8,10 @@ import (
 
 // Config required by grafonnet-playground
 type Config struct {
-	// GrafanaUrl is the url where grafana is running
-	GrafanaUrl string
+	// GrafanaURL is the url where grafana is running
+	GrafanaURL string
 	// GrafanaApiKey is the admin api key for grafana to create dashboards
-	GrafanaApiKey string
+	GrafanaAPIKey string
 	// GrafonnetLibDir is the location of grafonnet lib that the app should
 	// have access to. It can be managed as the situation dictates during the build
 	// or package phase
@@ -31,8 +31,8 @@ func Load() *Config {
 	viper.AutomaticEnv()
 
 	return &Config{
-		GrafanaUrl:                  mustHaveString("GRAFANA_URL"),
-		GrafanaApiKey:               mustHaveString("GRAFANA_API_KEY"),
+		GrafanaURL:                  mustHaveString("GRAFANA_URL"),
+		GrafanaAPIKey:               mustHaveString("GRAFANA_API_KEY"),
 		GrafonnetLibDir:             mustHaveString("GRAFONNET_LIB_DIR"),
 		GrafonnetPlaygroundFolderID: viper.GetInt("GRAFONNET_PLAYGROUND_FOLDER_ID"),
 	}
