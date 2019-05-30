@@ -26,6 +26,8 @@
     "@material-ui/icons": "^4.0.1",
     "axios": "^0.18.0",
     "codemirror-mode-jsonnet": "^1.0.0",
+    "math-random": "^1.0.4",
+    "query-string": "^6.5.0",
     "react": "^16.8.6",
     "react-codemirror": "^1.0.0",
     "react-dom": "^16.8.6",

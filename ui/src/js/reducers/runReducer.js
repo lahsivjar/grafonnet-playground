@@ -1,3 +1,6 @@
+import querystring from 'query-string';
+import random from 'math-random';
+
 import { RUN_PENDING, RUN_FULFILLED, RUN_REJECTED } from '../actions/types';
 import { CODE_UPDATE } from '../actions/types';
 
@@ -9,6 +12,14 @@ const initialState ={
     error: false,
 }
 
+function getUrl(baseurl) {
+    const parsed = querystring.parse(baseurl);
+    parsed.kiosk = 1;
+    parsed.buster = random();
+
+    return baseurl + '?' + querystring.stringify(parsed);
+}
+
 export default function RunReducer(state = initialState, action) {
     switch(action.type) {
         case RUN_PENDING:
@@ -18,6 +29,7 @@ export default function RunReducer(state = initialState, action) {
                 error: false,
             }
         case RUN_FULFILLED:
+            action.payload.url = getUrl(action.payload.url);
             return {
                 ...state,
                 ...action.payload,

@@ -1,6 +1,6 @@
 import React from 'react';
-
 import { connect } from 'react-redux';
+
 import '../../style/components/graph.css';
 
 class Graph extends React.Component {
