@@ -1,2 +1,4 @@
 GRAFANA_URL: "https://target-grafana-url"
 GRAFANA_API_KEY: "secret-api-key"
+GRAFONNET_LIB_DIR: /location/to/grafonnet-lib
+GRAFONNET_PLAYGROUND_FOLDER_ID: 0

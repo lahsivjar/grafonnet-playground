@@ -35,10 +35,10 @@ type grafanaRes struct {
 	Version int    `json:"version"`
 }
 
-func grafanaReqWithDefaults() *grafanaReq {
+func grafanaReqWithDefaults(folderID int) *grafanaReq {
 	return &grafanaReq{
 		Overwrite: true,
-		FolderID:  0,
+		FolderID:  folderID,
 	}
 }
 
@@ -52,12 +52,14 @@ func RunHandler(cfg *config.Config) func(*gin.Context) {
 			return
 		}
 
-		j, err := getJsonnetVM().EvaluateSnippet("grafonnet-playground", rReq.Code)
+		j, err := getJsonnetVM(cfg.GrafonnetLibDir).
+			EvaluateSnippet("grafonnet-playground", rReq.Code)
+
 		if err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"errorMsg": err.Error()})
 			return
 		}
-		gReq := grafanaReqWithDefaults()
+		gReq := grafanaReqWithDefaults(cfg.GrafonnetPlaygroundFolderID)
 		if err := json.Unmarshal([]byte(j), &gReq.Dashboard); err != nil {
 			c.JSON(http.StatusBadRequest, gin.H{"errorMsg": err.Error()})
 			return
@@ -75,11 +77,11 @@ func RunHandler(cfg *config.Config) func(*gin.Context) {
 	}
 }
 
-func getJsonnetVM() *jsonnet.VM {
+func getJsonnetVM(jPath string) *jsonnet.VM {
 	vm := jsonnet.MakeVM()
+	fmt.Println(jPath)
 	i := &jsonnet.FileImporter{
-		// TODO: Handle grafonnet-lib
-		JPaths: []string{"/Users/user/temp/grafonnet-lib"},
+		JPaths: []string{jPath},
 	}
 	vm.Importer(i)
 
@@ -89,7 +91,6 @@ func getJsonnetVM() *jsonnet.VM {
 func createDashboard(g *grafanaReq, cfg *config.Config) (*grafanaRes, error) {
 	headers := http.Header{}
 	headers.Add("Content-Type", "application/json")
-	fmt.Println(cfg.GrafanaApiKey)
 
 	reqBody, err := getRequestBody(g)
 	if err != nil {
