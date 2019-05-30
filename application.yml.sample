@@ -1,4 +1,13 @@
+# GRAFANA_URL points to a running grafana instance
 GRAFANA_URL: "https://target-grafana-url"
+
+# GRAFANA_API_KEY is the admin api key required to create dashboards from playground code
 GRAFANA_API_KEY: "secret-api-key"
+
+# GRAFONNET_LIB_DIR is the location where grafonnet-lib is cloned
+# See https://github.com/grafana/grafonnet-lib
 GRAFONNET_LIB_DIR: /location/to/grafonnet-lib
+
+# GRAFONNET_PLAYGROUND_FOLDER_ID is the folder where grafonnet-playground will create
+# dashboards when from playground code
 GRAFONNET_PLAYGROUND_FOLDER_ID: 0
