@@ -20,11 +20,19 @@ clean: tidy
 
 check-quality: lint fmt cyclo vet
 
-build:
-	echo Building "./out/${APP}"...
-	npm run dev
+go-build:
 	mkdir -p ./out
 	GO111MODULE=on go build -o "./out/${APP}"
+
+npm-build-dev:
+	npm run dev
+
+npm-build:
+	npm run build
+
+dev-build: npm-build-dev go-build
+
+build: npm-build go-build
 
 test:
 	GO111MODULE=on go test -count 1 -cover -v ./...
