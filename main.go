@@ -13,7 +13,7 @@ func main() {
 	router := setupGin()
 
 	router.Use(
-		static.Serve("/", static.LocalFile("./ui/public", true)),
+		static.Serve("/", static.LocalFile("./public", true)),
 		static.Serve("/dist", static.LocalFile("./dist", true)),
 	)
 

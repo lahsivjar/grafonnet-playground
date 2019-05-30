@@ -16,12 +16,12 @@ tidy:
 	GO111MODULE=on go mod tidy -v
 
 clean: tidy
+	rm -rf ./dist
 	rm -rf ./out
 
 check-quality: lint fmt cyclo vet
 
 go-build:
-	mkdir -p ./out
 	GO111MODULE=on go build -o "./out/${APP}"
 
 npm-build-dev:
