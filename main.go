@@ -17,6 +17,8 @@ func main() {
 		static.Serve("/dist", static.LocalFile("./dist", true)),
 	)
 
+	router.GET("/health", handlers.HealthCheckHandler)
+
 	api := router.Group("/api/v1")
 	{
 		api.POST("/run", handlers.RunHandler(cfg))
