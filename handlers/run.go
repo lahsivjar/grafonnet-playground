@@ -72,7 +72,7 @@ func RunHandler(cfg *config.Config) func(*gin.Context) {
 		}
 
 		c.JSON(http.StatusOK, runResponse{
-			URL: cfg.GrafanaURL + gRes.URL,
+			URL: cfg.GrafanaGetURL + gRes.URL,
 		})
 	}
 }
@@ -97,7 +97,7 @@ func createDashboard(g *grafanaReq, cfg *config.Config) (*grafanaRes, error) {
 		return nil, err
 	}
 
-	req, err := http.NewRequest("POST", cfg.GrafanaURL+"/api/dashboards/db", reqBody)
+	req, err := http.NewRequest("POST", cfg.GrafanaPostURL+"/api/dashboards/db", reqBody)
 	if err != nil {
 		return nil, err
 	}

@@ -1,5 +1,9 @@
-# GRAFANA_URL points to a running grafana instance
-GRAFANA_URL: "https://target-grafana-url"
+# GRAFANA_POST_URL points to a running grafana instance to create the editor
+# GRAFANA_GET_URL points to what the iframe will load from client side
+# The above two url's are separated because there might be use cases where
+# view and edit use different auth mechanism and thus require different endpoints
+GRAFANA_POST_URL: "https://target-grafana-url"
+GRAFANA_GET_URL: "https://target-grafana-url"
 
 # GRAFANA_API_KEY is the admin api key required to create dashboards from playground code
 GRAFANA_API_KEY: "secret-api-key"

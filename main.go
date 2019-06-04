@@ -13,13 +13,13 @@ func main() {
 	router := setupGin()
 
 	router.Use(
-		static.Serve("/", static.LocalFile("./public", true)),
-		static.Serve("/dist", static.LocalFile("./dist", true)),
+		static.Serve("/playground", static.LocalFile("./public", true)),
+		static.Serve("/playground/dist", static.LocalFile("./dist", true)),
 	)
 
 	router.GET("/health", handlers.HealthCheckHandler)
 
-	api := router.Group("/api/v1")
+	api := router.Group("/playground/api/v1")
 	{
 		api.POST("/run", handlers.RunHandler(cfg))
 	}
