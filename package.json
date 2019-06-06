@@ -24,7 +24,7 @@
   "dependencies": {
     "@material-ui/core": "^4.0.1",
     "@material-ui/icons": "^4.0.1",
-    "axios": "^0.18.0",
+    "axios": ">=0.18.1",
     "codemirror-mode-jsonnet": "^1.0.0",
     "js-file-download": "^0.4.7",
     "math-random": "^1.0.4",
