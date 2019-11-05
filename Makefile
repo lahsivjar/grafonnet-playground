@@ -24,6 +24,9 @@ check-quality: lint fmt cyclo vet
 go-build:
 	GO111MODULE=on go build -o "./out/${APP}"
 
+go-release-build:
+	GO111MODULE=on GOOS=linux GOARCH=amd64 go build -o "./out/${APP}"
+
 npm-build-dev:
 	npm run dev
 
@@ -33,6 +36,8 @@ npm-build:
 build-dev: npm-build-dev go-build
 
 build: npm-build go-build
+
+build-release: npm-build go-release-build
 
 test:
 	GO111MODULE=on go test -count 1 -cover -v ./...
