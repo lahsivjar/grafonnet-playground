@@ -8,6 +8,7 @@ import (
 	"github.com/google/go-jsonnet"
 	"github.com/lahsivjar/grafonnet-playground/config"
 	"github.com/lahsivjar/grafonnet-playground/grafana"
+	log "github.com/sirupsen/logrus"
 )
 
 type runRequest struct {
@@ -30,19 +31,22 @@ func RunHandler(cfg *config.Config, gSvc grafana.Service) func(*gin.Context) {
 
 		j, err := getJsonnetVM(cfg.GrafonnetLibDir).
 			EvaluateSnippet("grafonnet-playground", rReq.Code)
-
 		if err != nil {
+			log.Error("Failed to evaluate jsonnet", err)
 			c.JSON(http.StatusBadRequest, gin.H{"errorMsg": err.Error()})
 			return
 		}
+
 		gReq := grafana.NewCreateRequest(cfg.GrafonnetPlaygroundFolderID)
 		if err := json.Unmarshal([]byte(j), &gReq.Dashboard); err != nil {
+			log.Error("Failed to create POST dashboard request", err)
 			c.JSON(http.StatusBadRequest, gin.H{"errorMsg": err.Error()})
 			return
 		}
 
 		gRes, err := gSvc.CreateDashboard(gReq)
 		if err != nil {
+			log.Error("Failed to create dashboard", err)
 			c.JSON(http.StatusBadRequest, gin.H{"errorMsg": err.Error()})
 			return
 		}

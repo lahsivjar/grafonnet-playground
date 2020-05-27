@@ -8,9 +8,12 @@ import (
 	"github.com/lahsivjar/grafonnet-playground/config"
 	"github.com/lahsivjar/grafonnet-playground/grafana"
 	"github.com/lahsivjar/grafonnet-playground/handlers"
+	log "github.com/sirupsen/logrus"
 )
 
 func main() {
+	setupLogging()
+
 	cfg := config.Load()
 	grafanaService := grafana.NewService(cfg)
 
@@ -47,4 +50,10 @@ func setupGin() *gin.Engine {
 	)
 
 	return r
+}
+
+func setupLogging() {
+	log.SetFormatter(&log.TextFormatter{
+		FullTimestamp: true,
+	})
 }

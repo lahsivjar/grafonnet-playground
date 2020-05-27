@@ -5,10 +5,12 @@ import (
 	"time"
 
 	"github.com/lahsivjar/grafonnet-playground/config"
+	log "github.com/sirupsen/logrus"
 )
 
 // startCleaner starts a job to periodically delete any stale dashboards
 func startCleaner(ctx context.Context, pq *PriorityQueue, gSvc Service, cfg *config.Config) {
+	log.Info("Starting cleaner...")
 	ifBeforeNow := func(i *Item) bool {
 		return i.ProcessAt.Before(time.Now())
 	}
@@ -27,8 +29,18 @@ func startCleaner(ctx context.Context, pq *PriorityQueue, gSvc Service, cfg *con
 					err := gSvc.DeleteDashboard(item.Key)
 
 					if err != nil {
+						log.WithFields(log.Fields{
+							"uid":        item.Key,
+							"retryCount": item.RetryCount,
+							"err":        err,
+						}).Error("Failed to delete dashboard")
 						item.RetryCount = item.RetryCount + 1
-						item.ProcessAt.Add(getBackoff(cfg.AutoCleanupMinBackoff, cfg.AutoCleanupMaxBackoff, item.RetryCount))
+						item.ProcessAt = time.Now().
+							Add(getBackoff(
+								cfg.AutoCleanupMinBackoff,
+								cfg.AutoCleanupMaxBackoff,
+								item.RetryCount,
+							))
 						pq.Push(item)
 					}
 				}

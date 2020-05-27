@@ -50,9 +50,6 @@ func (g *grafana) SetupCleanerJob(ctx context.Context) error {
 
 // CreateDashboard creates a new grafana dashboard
 func (g *grafana) CreateDashboard(cr *CreateRequest) (*CreateResponse, error) {
-	headers := http.Header{}
-	headers.Add("Content-Type", "application/json")
-
 	reqBody, err := getRequestBody(cr)
 	if err != nil {
 		return nil, err
@@ -87,7 +84,25 @@ func (g *grafana) CreateDashboard(cr *CreateRequest) (*CreateResponse, error) {
 }
 
 func (g *grafana) DeleteDashboard(uid string) error {
-	return nil
+	req, err := http.NewRequest("DELETE", g.cfg.GrafanaPostURL+"/api/dashboards/uid/"+uid, nil)
+	if err != nil {
+		return err
+	}
+	req.Header.Set("Authorization", "Bearer "+g.cfg.GrafanaAPIKey)
+	req.Header.Set("Content-Type", "application/json")
+	resp, err := http.DefaultClient.Do(req)
+
+	if err != nil {
+		return err
+	}
+	defer resp.Body.Close()
+
+	if resp.StatusCode >= 200 && resp.StatusCode <= 299 {
+		return nil
+	}
+
+	errorMsg, err := ioutil.ReadAll(resp.Body)
+	return fmt.Errorf("Error occurred while deleting graph: %s", errorMsg)
 }
 
 func getRequestBody(req *CreateRequest) (io.Reader, error) {
