@@ -22,20 +22,20 @@
   },
   "homepage": "https://github.com/lahsivjar/grafonnet-playground#readme",
   "dependencies": {
-    "@material-ui/core": "^4.0.1",
-    "@material-ui/icons": "^4.0.1",
-    "axios": ">=0.18.1",
+    "@material-ui/core": "^4.10.0",
+    "@material-ui/icons": "^4.9.1",
+    "axios": "^0.19.2",
     "codemirror-mode-jsonnet": "^1.0.0",
-    "js-file-download": "^0.4.7",
+    "js-file-download": "^0.4.12",
     "math-random": "^1.0.4",
-    "query-string": "^6.5.0",
-    "react": "^16.8.6",
+    "query-string": "^6.12.1",
+    "react": "^16.13.1",
     "react-codemirror": "^1.0.0",
-    "react-dom": "^16.8.6",
-    "react-redux": "^7.0.3",
-    "redux": "^4.0.1",
+    "react-dom": "^16.13.1",
+    "react-redux": "^7.2.0",
+    "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
-    "redux-promise-middleware": "^6.1.0",
+    "redux-promise-middleware": "^6.1.2",
     "redux-thunk": "^2.3.0"
   },
   "eslintConfig": {
@@ -54,17 +54,17 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/plugin-proposal-class-properties": "^7.4.4",
-    "@babel/preset-env": "^7.4.5",
-    "@babel/preset-react": "^7.0.0",
-    "babel-loader": "^8.0.6",
+    "@babel/core": "^7.10.0",
+    "@babel/plugin-proposal-class-properties": "^7.8.3",
+    "@babel/preset-env": "^7.10.0",
+    "@babel/preset-react": "^7.10.0",
+    "babel-loader": "^8.1.0",
     "clean-webpack-plugin": "^2.0.2",
     "css-loader": "^2.1.1",
     "style-loader": "^0.23.1",
-    "terser-webpack-plugin": "^1.3.0",
-    "webpack": "^4.32.2",
-    "webpack-cli": "^3.3.2",
-    "webpack-merge": "^4.2.1"
+    "terser-webpack-plugin": "^1.4.3",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.11",
+    "webpack-merge": "^4.2.2"
   }
 }
