@@ -15,3 +15,22 @@ GRAFONNET_LIB_DIR: /location/to/grafonnet-lib
 # GRAFONNET_PLAYGROUND_FOLDER_ID is the folder where grafonnet-playground will create
 # dashboards when from playground code
 GRAFONNET_PLAYGROUND_FOLDER_ID: 0
+
+# Setting AUTO_CLEANUP to true will automatically delete the dashboard after the iframe
+# loads it
+AUTO_CLEANUP: false
+
+# Setting AUTO_CLEANUP_INTERVAL will configure how often does the cleanup job runs
+# Example: 5s, 1m
+AUTO_CLEANUP_INTERVAL: 30s
+
+# CleanupAfter configures time after which the dashboard created is considered
+# stale and can be deleted. It doesn't stop the already loaded dashboard from working
+CLEANUP_AFTER: 10s
+
+# Setting AUTO_CLEANUP_MIN_BACKOFF will configure minimum backoff for deleting dashboard
+# Example: 5s, 1m
+AUTO_CLEANUP_MIN_BACKOFF: 30s
+
+# Setting AUTO_CLEANUP_MAX_BACKOFF will configure maximum backoff for deleting dashboard
+AUTO_CLEANUP_MAX_BACKOFF: 5m

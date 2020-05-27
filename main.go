@@ -1,14 +1,25 @@
 package main
 
 import (
+	"context"
+
 	"github.com/gin-gonic/contrib/static"
 	"github.com/gin-gonic/gin"
 	"github.com/lahsivjar/grafonnet-playground/config"
+	"github.com/lahsivjar/grafonnet-playground/grafana"
 	"github.com/lahsivjar/grafonnet-playground/handlers"
 )
 
 func main() {
 	cfg := config.Load()
+	grafanaService := grafana.NewService(cfg)
+
+	if cfg.AutoCleanup {
+		err := grafanaService.SetupCleanerJob(context.Background())
+		if err != nil {
+			panic(err)
+		}
+	}
 
 	router := setupGin()
 
@@ -21,7 +32,7 @@ func main() {
 
 	api := router.Group("/playground/api/v1")
 	{
-		api.POST("/run", handlers.RunHandler(cfg))
+		api.POST("/run", handlers.RunHandler(cfg, grafanaService))
 	}
 
 	router.Run(":8080")
