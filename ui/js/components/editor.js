@@ -1,5 +1,5 @@
 import React from 'react';
-import { UnControlled as CodeMirror } from 'react-codemirror2'
+import { Controlled as CodeMirror } from 'react-codemirror2'
 import { connect } from 'react-redux';
 import { CodeUpdate } from '../actions/codeUpdate';
 
@@ -21,6 +21,7 @@ class Editor extends React.Component {
             undo: true,
             redo: true,
             smartIndent: true,
+            autoCursor: false,
             theme: this.props.theme,
         };
         const customMode = {
@@ -28,9 +29,16 @@ class Editor extends React.Component {
             fn: jsonnetMode,
         };
         return(
-            <div className='editor'> <CodeMirror value={code}
-                onChange={this.updateCode} options={options}
-                defineMode={customMode} /> </div>); }
+            <div className='editor'>
+                <CodeMirror
+                    value={code}
+                    onBeforeChange={this.updateCode}
+                    options={options}
+                    defineMode={customMode}
+                />
+            </div>
+        );
+    }
 }
 
 const mapStateToProps = state => {
