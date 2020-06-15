@@ -7,7 +7,7 @@ WORKDIR /src
 
 COPY . ./
 
-RUN make clean build && \
+RUN make clean build-release && \
         git clone https://github.com/grafana/grafonnet-lib.git dist/grafonnet-lib
 
 FROM alpine:3.9
