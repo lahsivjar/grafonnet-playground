@@ -4,7 +4,7 @@ import logger from 'redux-logger';
 import promise from 'redux-promise-middleware';
 import { get } from 'idb-keyval';
 
-import { CODE_UPDATE, THEME_UPDATE } from './actions/types';
+import { CODE_UPDATE, THEME_UPDATE, WRAP_TEXT } from './actions/types';
 import rootReducer from './reducers/index';
 
 const middlewares = [promise, thunk];
@@ -33,6 +33,16 @@ get('theme')
         if (val !== undefined) {
             store.dispatch({
                 type: THEME_UPDATE,
+                payload: val,
+            })
+        }
+    })
+
+get('wrap')
+    .then(val => {
+        if (val !== undefined) {
+            store.dispatch({
+                type: WRAP_TEXT,
                 payload: val,
             })
         }

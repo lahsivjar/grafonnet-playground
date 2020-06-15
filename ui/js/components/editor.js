@@ -22,6 +22,7 @@ class Editor extends React.Component {
             redo: true,
             smartIndent: true,
             autoCursor: false,
+            lineWrapping: this.props.wrap,
             theme: this.props.theme,
         };
         const customMode = {

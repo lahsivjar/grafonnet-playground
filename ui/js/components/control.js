@@ -4,14 +4,17 @@ import { withStyles } from '@material-ui/core/styles';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import SendIcon from '@material-ui/icons/Send';
 import IconButton from '@material-ui/core/IconButton';
+import WrapTextIcon from '@material-ui/icons/WrapText';
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import InputLabel from '@material-ui/core/InputLabel';
+import Tooltip from '@material-ui/core/Tooltip';
 import Grid from '@material-ui/core/Grid';
 import Icon from '@material-ui/core/Icon';
 import { connect } from 'react-redux';
 import { Run } from '../actions/run';
 import { ThemeUpdate } from '../actions/themeUpdate';
+import { WrapText } from '../actions/wrapText';
 import fileDownload from 'js-file-download';
 
 import 'codemirror/theme/ambiance.css';
@@ -52,6 +55,10 @@ class Control extends React.Component {
         this.props.ThemeUpdate(event.target.value)
     }
 
+    wrapTextToggle = (event) => {
+        this.props.WrapText(!this.props.wrap)
+    }
+
     download = () => {
         fileDownload(
             this.props.code,
@@ -80,24 +87,36 @@ class Control extends React.Component {
                                 </Select>
                             </Grid>
                             <Grid item>
-                                <IconButton
-                                    className={classes.button}
-                                    aria-label='Download'
-                                    onClick={this.download}
-                                >
-                                    <CloudDownloadIcon />
-                                </IconButton>
+                                <Tooltip title='Toogle text wrapping'>
+                                    <IconButton
+                                        className={classes.button}
+                                        onClick={this.wrapTextToggle}
+                                    >
+                                        <WrapTextIcon />
+                                    </IconButton>
+                                </Tooltip>
                             </Grid>
                             <Grid item>
-                                <IconButton
-                                    color='primary'
-                                    className={classes.button}
-                                    onClick={this.runCode}
-                                    aria-label='Run'
-                                    disabled={this.props.loading}
-                                >
-                                    <SendIcon />
-                                </IconButton>
+                                <Tooltip title='Download'>
+                                    <IconButton
+                                        className={classes.button}
+                                        onClick={this.download}
+                                    >
+                                        <CloudDownloadIcon />
+                                    </IconButton>
+                                </Tooltip>
+                            </Grid>
+                            <Grid item>
+                                <Tooltip title='Run'>
+                                    <IconButton
+                                        color='primary'
+                                        className={classes.button}
+                                        onClick={this.runCode}
+                                        disabled={this.props.loading}
+                                    >
+                                        <SendIcon />
+                                    </IconButton>
+                                </Tooltip>
                             </Grid>
                         </Grid>
                     </Grid>
@@ -111,4 +130,4 @@ const mapStateToProps = state => {
     return { ...state.RunReducer };
 }
 
-export default connect(mapStateToProps, { Run, ThemeUpdate }) (withStyles(styles) (Control));
+export default connect(mapStateToProps, { Run, WrapText, ThemeUpdate }) (withStyles(styles) (Control));
