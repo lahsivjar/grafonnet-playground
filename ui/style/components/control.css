@@ -2,3 +2,14 @@
     height: 48px;
     background: #81D4FA;
 }
+
+.control-select-theme {
+    font-family: '"Roboto", "Helvetica", "Arial", sans-serif';
+    font-weight: 400;
+    font-size: 16px;
+    padding: 0px 6px;
+}
+
+.control-select-container {
+    padding: 6px;
+}
