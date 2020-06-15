@@ -55,15 +55,7 @@ export default function RunReducer(state = initialState, action) {
                 error: true,
             }
         case CODE_UPDATE:
-            return {
-                ...state,
-                ...action.payload,
-            }
         case THEME_UPDATE:
-            return {
-                ...state,
-                ...action.payload,
-            }
         case WRAP_TEXT:
             return {
                 ...state,
