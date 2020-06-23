@@ -75,7 +75,9 @@ func (g *grafana) CreateDashboard(cr *CreateRequest) (*CreateResponse, error) {
 			return nil, err
 		}
 
-		g.pq.Push(&Item{Key: gRes.UID, ProcessAt: time.Now().Add(g.cfg.CleanupAfter)})
+		if g.cfg.AutoCleanup {
+			g.pq.Push(&Item{Key: gRes.UID, ProcessAt: time.Now().Add(g.cfg.CleanupAfter)})
+		}
 		return &gRes, nil
 	}
 
