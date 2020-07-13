@@ -9,7 +9,6 @@ Run using dockerhub image (note the variables in the command)
 
 ```
 docker run \
-    -e "GRAFANA_URL=${grafana_url}" \
     -e "GRAFANA_API_KEY=${grafana_api_key}" \
     -e "GRAFANA_GET_URL=${grafana_url}" \
     -e "GRAFANA_POST_URL=${grafana_url}" \
@@ -23,7 +22,7 @@ docker run \
 
 ## Cleaning up dashboards created by playground
 
-From version 1.0.0, grafonnet-playground allows automatically cleaning up the dashboards that were created. This can be configured via `AUTO_CLEANUP_INTERVAL` config and can be further tuned via other available configuration. For a list of all configurations please check [application.yml.sample](application.yml.sample) file.
+From version 1.0.0, grafonnet-playground allows automatically cleaning up the dashboards that were created. This can be configured via `AUTO_CLEANUP` config and can be further tuned via other available configuration. For a list of all configurations please check [application.yml.sample](application.yml.sample) file.
 
 NOTE: Even when the dashboard is deleted after it has been rendered, it will continue to work and display data.
 
