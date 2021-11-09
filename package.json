@@ -38,7 +38,7 @@
     "redux": "^4.0.5",
     "redux-logger": "^3.0.6",
     "redux-promise-middleware": "^6.1.2",
-    "redux-thunk": "^2.3.0",
+    "redux-thunk": "^2.4.0",
     "throttle-debounce": "^2.3.0"
   },
   "eslintConfig": {
@@ -57,16 +57,16 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.11.4",
-    "@babel/plugin-proposal-class-properties": "^7.10.4",
-    "@babel/preset-env": "^7.11.0",
-    "@babel/preset-react": "^7.10.4",
-    "babel-loader": "^8.1.0",
+    "@babel/core": "^7.16.0",
+    "@babel/plugin-proposal-class-properties": "^7.16.0",
+    "@babel/preset-env": "^7.16.0",
+    "@babel/preset-react": "^7.16.0",
+    "babel-loader": "^8.2.3",
     "clean-webpack-plugin": "^2.0.2",
     "css-loader": "^2.1.1",
     "style-loader": "^0.23.1",
     "terser-webpack-plugin": "^1.4.5",
-    "webpack": "^4.44.1",
+    "webpack": "^4.46.0",
     "webpack-cli": "^3.3.12",
     "webpack-merge": "^4.2.2"
   }
