@@ -29,7 +29,7 @@ func RunHandler(cfg *config.Config, gSvc grafana.Service) func(*gin.Context) {
 			return
 		}
 
-		j, err := getJsonnetVM(cfg.GrafonnetLibDir).
+		j, err := getJsonnetVM(cfg.GrafonnetLibDirs).
 			EvaluateSnippet("grafonnet-playground", rReq.Code)
 		if err != nil {
 			log.Error("Failed to evaluate jsonnet", err)
@@ -57,10 +57,10 @@ func RunHandler(cfg *config.Config, gSvc grafana.Service) func(*gin.Context) {
 	}
 }
 
-func getJsonnetVM(jPath string) *jsonnet.VM {
+func getJsonnetVM(jPaths []string) *jsonnet.VM {
 	vm := jsonnet.MakeVM()
 	i := &jsonnet.FileImporter{
-		JPaths: []string{jPath},
+		JPaths: jPaths,
 	}
 	vm.Importer(i)
 

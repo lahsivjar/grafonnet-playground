@@ -9,8 +9,9 @@ GRAFANA_GET_URL: "https://target-grafana-url"
 GRAFANA_API_KEY: "secret-api-key"
 
 # GRAFONNET_LIB_DIR is the location where grafonnet-lib is cloned
+# It can also have other plugins as a slice
 # See https://github.com/grafana/grafonnet-lib
-GRAFONNET_LIB_DIR: /location/to/grafonnet-lib
+GRAFONNET_LIB_DIRS: /location/to/grafonnet-lib
 
 # GRAFONNET_PLAYGROUND_FOLDER_ID is the folder where grafonnet-playground will create
 # dashboards when from playground code

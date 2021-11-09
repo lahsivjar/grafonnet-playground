@@ -9,8 +9,7 @@ COPY . ./
 
 RUN make clean build-release && \
         git clone https://github.com/grafana/grafonnet-lib.git dist/grafonnet-lib && \
-        cd dist/grafonnet-lib && \
-        git reset --hard 3626fc4dc2326931c530861ac5bebe39444f6cbf
+        git clone https://github.com/gojekfarm/grafonnet-bigquery-panel.git dist/grafonnet-bigquery-panel
 
 FROM alpine:3.9
 
@@ -25,7 +24,7 @@ COPY --from=bob /src/public /app/public
 
 COPY --from=bob /src/out/grafonnet-playground /app
 
-ENV GRAFONNET_LIB_DIR=/app/dist/grafonnet-lib
+ENV GRAFONNET_LIB_DIRS=/app/dist/grafonnet-lib /app/dist/grafonnet-bigquery-panel
 
 CMD ["./grafonnet-playground"]
 

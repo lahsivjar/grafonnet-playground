@@ -15,10 +15,10 @@ type Config struct {
 	GrafanaGetURL string
 	// GrafanaApiKey is the admin api key for grafana to create dashboards
 	GrafanaAPIKey string
-	// GrafonnetLibDir is the location of grafonnet lib that the app should
+	// GrafonnetLibDirs is a slice of location of grafonnet lib that the app should
 	// have access to. It can be managed as the situation dictates during the build
 	// or package phase
-	GrafonnetLibDir string
+	GrafonnetLibDirs []string
 	// GrafonnetPlaygroundFolderID is the folder id in grafana where the playground
 	// dashboards will be created. A separate folder is used to ensure that the
 	// dashboards can be identified and deleted with ease if required
@@ -55,7 +55,7 @@ func Load() *Config {
 		GrafanaPostURL:              mustHaveString("GRAFANA_POST_URL"),
 		GrafanaGetURL:               mustHaveString("GRAFANA_GET_URL"),
 		GrafanaAPIKey:               mustHaveString("GRAFANA_API_KEY"),
-		GrafonnetLibDir:             mustHaveString("GRAFONNET_LIB_DIR"),
+		GrafonnetLibDirs:            mustHaveStringSlice("GRAFONNET_LIB_DIRS"),
 		GrafonnetPlaygroundFolderID: viper.GetInt("GRAFONNET_PLAYGROUND_FOLDER_ID"),
 		AutoCleanup:                 viper.GetBool("AUTO_CLEANUP"),
 		CleanupAfter:                viper.GetDuration("CLEANUP_AFTER"),
@@ -71,5 +71,13 @@ func mustHaveString(key string) string {
 		panic(fmt.Sprintf("key %s is not set", key))
 	} else {
 		return viper.GetString(key)
+	}
+}
+
+func mustHaveStringSlice(key string) []string {
+	if !viper.IsSet(key) {
+		panic(fmt.Sprintf("key %s is not set", key))
+	} else {
+		return viper.GetStringSlice(key)
 	}
 }
