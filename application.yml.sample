@@ -8,6 +8,9 @@ GRAFANA_GET_URL: "https://target-grafana-url"
 # GRAFANA_API_KEY is the admin api key required to create dashboards from playground code
 GRAFANA_API_KEY: "secret-api-key"
 
+# GRAFANA_API_KEY_HEADER_NAME is the header name used to sent grafana API key to create and delete dashboards
+GRAFANA_API_KEY_HEADER_NAME: "Authorization"
+
 # GRAFONNET_LIB_DIR is the location where grafonnet-lib is cloned
 # It can also have other plugins as a slice
 # See https://github.com/grafana/grafonnet-lib
