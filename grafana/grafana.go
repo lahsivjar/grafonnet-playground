@@ -59,7 +59,7 @@ func (g *grafana) CreateDashboard(cr *CreateRequest) (*CreateResponse, error) {
 	if err != nil {
 		return nil, err
 	}
-	req.Header.Set("Authorization", "Bearer "+g.cfg.GrafanaAPIKey)
+	req.Header.Set(g.cfg.GrafanaAPIKeyHeaderName, "Bearer "+g.cfg.GrafanaAPIKey)
 	req.Header.Set("Content-Type", "application/json")
 	resp, err := http.DefaultClient.Do(req)
 
@@ -90,7 +90,7 @@ func (g *grafana) DeleteDashboard(uid string) error {
 	if err != nil {
 		return err
 	}
-	req.Header.Set("Authorization", "Bearer "+g.cfg.GrafanaAPIKey)
+	req.Header.Set(g.cfg.GrafanaAPIKeyHeaderName, "Bearer "+g.cfg.GrafanaAPIKey)
 	req.Header.Set("Content-Type", "application/json")
 	resp, err := http.DefaultClient.Do(req)
 

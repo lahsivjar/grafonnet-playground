@@ -15,6 +15,8 @@ type Config struct {
 	GrafanaGetURL string
 	// GrafanaApiKey is the admin api key for grafana to create dashboards
 	GrafanaAPIKey string
+	// GrafanaAPIKeyHeaderName is the header name to sent grafanaAPIKey
+	GrafanaAPIKeyHeaderName string
 	// GrafonnetLibDirs is a slice of location of grafonnet lib that the app should
 	// have access to. It can be managed as the situation dictates during the build
 	// or package phase
@@ -48,6 +50,7 @@ func Load() *Config {
 	viper.SetDefault("AUTO_CLEANUP_INTERVAL", "30s")
 	viper.SetDefault("AUTO_CLEANUP_MIN_BACKOFF", "30s")
 	viper.SetDefault("AUTO_CLEANUP_MAX_BACKOFF", "5m")
+	viper.SetDefault("GRAFANA_API_KEY_HEADER_NAME", "Authorization")
 	viper.ReadInConfig()
 	viper.AutomaticEnv()
 
@@ -57,6 +60,7 @@ func Load() *Config {
 		GrafanaAPIKey:               mustHaveString("GRAFANA_API_KEY"),
 		GrafonnetLibDirs:            mustHaveStringSlice("GRAFONNET_LIB_DIRS"),
 		GrafonnetPlaygroundFolderID: viper.GetInt("GRAFONNET_PLAYGROUND_FOLDER_ID"),
+		GrafanaAPIKeyHeaderName:     viper.GetString("GRAFANA_API_KEY_HEADER_NAME"),
 		AutoCleanup:                 viper.GetBool("AUTO_CLEANUP"),
 		CleanupAfter:                viper.GetDuration("CLEANUP_AFTER"),
 		AutoCleanupInterval:         viper.GetDuration("AUTO_CLEANUP_INTERVAL"),
