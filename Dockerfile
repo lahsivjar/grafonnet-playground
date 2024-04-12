@@ -6,6 +6,7 @@ RUN apk add --update build-base git nodejs nodejs-npm ca-certificates && \
 WORKDIR /src
 
 COPY . ./
+RUN npm install webpack
 
 RUN make clean build-release && \
         git clone https://github.com/grafana/grafonnet-lib.git dist/grafonnet-lib && \
@@ -24,7 +25,7 @@ COPY --from=bob /src/public /app/public
 
 COPY --from=bob /src/out/grafonnet-playground /app
 
-ENV GRAFONNET_LIB_DIRS=/app/dist/grafonnet-lib /app/dist/grafonnet-bigquery-panel
+ENV GRAFONNET_LIB_DIRS='/app/dist/grafonnet-lib /app/dist/grafonnet-bigquery-panel'
 
 CMD ["./grafonnet-playground"]
 
