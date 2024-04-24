@@ -10,7 +10,8 @@ RUN npm install webpack
 
 RUN make clean build-release && \
         git clone https://github.com/grafana/grafonnet-lib.git dist/grafonnet-lib && \
-        git clone https://github.com/gojekfarm/grafonnet-bigquery-panel.git dist/grafonnet-bigquery-panel
+        git clone https://github.com/gojekfarm/grafonnet-bigquery-panel.git dist/grafonnet-bigquery-panel && \
+        git clone https://github.com/grafana/grafonnet.git dist/grafonnet
 
 FROM alpine:3.9
 
@@ -25,7 +26,7 @@ COPY --from=bob /src/public /app/public
 
 COPY --from=bob /src/out/grafonnet-playground /app
 
-ENV GRAFONNET_LIB_DIRS='/app/dist/grafonnet-lib /app/dist/grafonnet-bigquery-panel'
+ENV GRAFONNET_LIB_DIRS='/app/dist/grafonnet-lib /app/dist/grafonnet-bigquery-panel app/dist/grafonnet'
 
 CMD ["./grafonnet-playground"]
 
