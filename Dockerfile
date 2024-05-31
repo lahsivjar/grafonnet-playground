@@ -26,7 +26,7 @@ COPY --from=bob /src/public /app/public
 
 COPY --from=bob /src/out/grafonnet-playground /app
 
-ENV GRAFONNET_LIB_DIRS='/app/dist/grafonnet-lib /app/dist/grafonnet-bigquery-panel app/dist/grafonnet'
+ENV GRAFONNET_LIB_DIRS='/app/dist/grafonnet-lib /app/dist/grafonnet-bigquery-panel /app/dist/grafonnet'
 
 CMD ["./grafonnet-playground"]
 
